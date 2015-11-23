@@ -62,6 +62,11 @@
     (is (not (pair? non-pair-hand)))))
 
 (deftest higher-hand-test
+  (testing "will return the same hand if only one hand is passed"
+    (let [hand [(cards/new-card :clubs 6)
+                (cards/new-card :spades 7)
+                (cards/new-card :clubs :king)]]
+      (is (= (higher-hand hand) hand))))
   (testing "higher rank has higher value"
     (let [hand1 [(cards/new-card :clubs 6)
                  (cards/new-card :spades 7)

@@ -28,6 +28,8 @@
     (some #(apply = %1) pairs)))
 
 (defn higher-hand
+  ([hand]
+   hand)
   ([hand1 hand2]
    (loop [sorted-hand1 (cards/sort-cards hand1)
           sorted-hand2 (cards/sort-cards hand2)]

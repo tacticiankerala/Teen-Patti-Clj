@@ -32,3 +32,13 @@
 
 (println "higher hand")
 (println (apply hand/higher-hand players))
+
+(println "************************")
+(println "and...the winner is...")
+(println (apply hand/higher-hand (or
+                                  (seq (filter hand/trio? players))
+                                  (seq (filter hand/pure-sequence? players))
+                                  (seq (filter hand/sequence? players))
+                                  (seq (filter hand/colour? players))
+                                  (seq (filter hand/pair? players))
+                                  players)))
