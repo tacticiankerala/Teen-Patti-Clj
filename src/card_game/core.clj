@@ -31,4 +31,4 @@
 
 
 (println "higher hand")
-(println (reduce hand/higher-hand players))
+(println (apply hand/higher-hand players))

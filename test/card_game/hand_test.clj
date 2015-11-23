@@ -68,8 +68,12 @@
                  (cards/new-card :clubs :king)]
           hand2 [(cards/new-card :diamonds 4)
                  (cards/new-card :spades 5)
-                 (cards/new-card :spades :ace)]]
-      (is (= (higher-hand hand1 hand2) hand2))))
+                 (cards/new-card :spades :ace)]
+          hand3 [(cards/new-card :diamonds 4)
+                 (cards/new-card :spades 5)
+                 (cards/new-card :clubs :ace)]]
+      (is (= (higher-hand hand1 hand2) hand2))
+      (is (= (higher-hand hand1 hand2 hand3) hand3))))
   (testing "same rank will check for suit"
     (let [hand1 [(cards/new-card :clubs 7)
                  (cards/new-card :spades 6)
