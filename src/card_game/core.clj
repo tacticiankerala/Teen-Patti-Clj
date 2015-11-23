@@ -12,22 +12,23 @@
 (def players (into [] (for [_ (range num-of-players)]
                         (deck/deal-hand! deck))))
 
+(def tests [
+            {:name "Trio" :test hand/trio?}
+            {:name "Pure Sequence" :test hand/pure-sequence?}
+            {:name "Sequence" :test hand/sequence?}
+            {:name "Colour" :test hand/colour?}
+            {:name "Pair" :test hand/pair?}])
+
+(println "Players")
 (doall (map println players))
+(println "---------------------")
 
-(println "trio")
-(doall (map #(when (hand/trio? %) (println %)) players))
+(doall (map (fn [{name :name test :test}]
+              (println name)
+              (doall (map #(when (test  %) (println %)) players))
+              (println "---------------------")
+              ) tests))
 
-(println "pure sequence")
-(doall (map #(when (hand/pure-sequence? %) (println %)) players))
-
-(println "sequence")
-(doall (map #(when (hand/sequence? %) (println %)) players))
-
-(println "colour")
-(doall   (map #(when (hand/colour? %) (println %)) players))
-
-(println "pair")
-(doall (map #(when (hand/pair? %) (println %)) players))
 
 (println "higher hand")
 (println (reduce hand/higher-hand players))
